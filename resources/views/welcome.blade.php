@@ -1,95 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Laravel</title>
+@section('content')
+    <div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Welcome</div>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
+                <div class="panel-body">
+                    @if (Auth::guest())
+                        Not logged in. Please <a href="{{ url('/login') }}">login</a>.
                     @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
+                        View <a href="{{ url('/home') }}">dashboard</a>
                     @endif
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <h3>Weather Application</h3>
+                    <h4>Setup</h4>
+                    Create a new public project on GitHub for this programming exercise
+                    If you don't already have PHP and Laravel set up your system, use Homestead to get a development environment up and running to save yourself some time.
+                    https://laravel.com/docs/5.3/homestead
+                    <h4>Assumptions</h4>
+                    We expect about 4 hours coding time.  Due to the time limit you may not be able to fully implement all the features you want in detail.  If that is the case, please add code comments in the relevant locations describing how you would improve your code if you had the time.
+                    <h4>Requirements</h4>
+                    You are going to be developing a Laravel application which allows a user to create an account on the site or log in with an existing account.  A logged in user should be able to add multiple zip codes and have them stored in the database.  Weather information will be retrieved from an external API for each zip code and then stored in a database. A logged in user should be able to see a list of the zip codes they added as well as the current weather information.
+                    <h5>Tasks</h5>
+                        <ul>
+                            <li>Allow a user to create a new account or log into an existing account</li>
+                            <li>Store user account information securely in a database</li>
+                            <li>Allow a logged in user to add one or more zip codes</li>
+                            <li>Get weather information for each zip code using an external API</li>
+                            <li>Display the user's stored zip codes along with current weather information</li>
+                        </ul>
+                    <h5>Bonus</h5>
+                        <ul>
+                            <li>Create a REST API endpoint to create a user account</li>
+                            <li>Create a REST API endpoint to authenticate and log in a user</li>
+                            <li>Use the REST API endpoints on the front-end instead of performing a form post</li>
+                            <li>Write unit and/or functional tests to verify the application is working as expected</li>
+                            <li>https://laravel.com/docs/5.3/application-testing</li>
+                        </ul>
                 </div>
             </div>
         </div>
-    </body>
-</html>
+    </div>
+</div>
+@endsection
