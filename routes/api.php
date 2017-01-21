@@ -19,4 +19,5 @@ Route::get('/user', function (Request $request) {
 
 Route::resource('users', 'UsersController');
 Route::resource('users.zips', 'UsersZipsController');
+Route::resource('users.zips.weather', 'UsersZipsWeatherController');
 

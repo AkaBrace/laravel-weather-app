@@ -24,4 +24,14 @@ class ZipCode extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    /**
+     * Creates a nested relationship with the Weather Model
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function weather ()
+    {
+        return $this->hasOne('App\Weather');
+    }
 }

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\ZipCode;
 
+//use GuzzleHttp\Client as GuzzleHttpClient;
+
 class UsersZipsController extends Controller
 {
     /**
@@ -38,6 +40,14 @@ class UsersZipsController extends Controller
      */
     public function index (User $user)
     {
+        //// TODO: Bind/Associate the nested Weather model to each Zip Code model using Eloquent relationships
+        //// TODO: Iterate through an array of zip code models calling the refreshWeatherData for each
+        //// TODO: Can probably use Eloquent relationships or a traditional lookup by ID
+        //foreach ($aryZipCodes as $id) {
+        //	// Get a handle to the ZipCode Model by $id
+        //	$this->refreshWeatherData($userZipCode);
+        //}
+
         return $user->zipCodes;
     }
 
@@ -83,6 +93,12 @@ class UsersZipsController extends Controller
 
         // TODO: Verify the Zip Code model belongs to the User by invoking a method in the User model that checks
         $userZipCode->user()->associate($user);
+
+        //// Need to setup direct injection and then Bind/Associate
+        //$userZipCode->weather()->associate($weather);
+
+        //TODO: Need to finish the function
+        //$this->refreshWeatherData($this->userZipCode);
 
         return $userZipCode;
     }
@@ -142,4 +158,44 @@ class UsersZipsController extends Controller
 
         return response('Deleted.', 200);
     }
+
+    ///**
+    // * Contacts remote API of Weather Underground, fetches current weather info for the given zip code, and then stores
+    // * the data into the database.
+    // *
+    // * @param   UserZipCode $userZipCode
+    // *
+    // * @returns {boolean} - Success or Failure
+    // */
+    //private function refreshWeatherData (UserZipCode $userZipCode)
+    //{
+    //	// TODO: Sanity check the arguments
+    //	// TODO: Drive this key through the .env file
+    //	$weatherUndergroundApiKey = "44efb4ddf448bcd6";
+    //
+    //	$httpClient = new GuzzleHttpClient();
+    //
+    //	// Get the zip code value from the $userZipCode['zip_code']
+    //	// $zipCode =
+    //
+    //	$weatherUndergroundApiUrl = "http://api.wunderground.com/api/{$weatherUndergroundApiKey}/conditions/q/{$zipCode}.json";
+    //	// TODO: Should wrap in a try catch to handle exceptions
+    //	// TODO: Consider setting up promises to fetch weather data for multiple zip codes concurrently.
+    //	$weatherUndergroundResponse = $httpClient->get($weatherUndergroundApiUrl);
+    //	// TODO: Sanity check the response
+    //	$responseBody = $weatherUndergroundResponse->getBody();
+    //
+    //	// 4. Invoke the update() method on the weather model instance
+    //	$this->userZipCode->weather()->update([
+    //		'temperature_string' => $responseBody->temperature_string,
+    //		'weather'            => $responseBody->weather,
+    //		'relative_humidity'  => $responseBody->relative_humidity,
+    //		'wind_string'        => $responseBody->wind_string,
+    //		'feelslike_string'   => $responseBody->feelslike_string,
+    //		'pressure_in'        => $responseBody->pressure_in,
+    //		'visibility_mi'      => $responseBody->visibility_mi,
+    //	]);
+    //
+    //	// Return a boolean representing whether the operation was successful or error
+    //}
 }
