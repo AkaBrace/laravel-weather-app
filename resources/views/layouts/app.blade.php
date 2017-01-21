@@ -20,6 +20,9 @@
                 ]
         ); ?>
     </script>
+
+    @yield('head')
+
 </head>
 <body>
     <div id="app">
@@ -83,5 +86,8 @@
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+
+    @yield('footer')
+
 </body>
 </html>
