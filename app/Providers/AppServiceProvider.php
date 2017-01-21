@@ -3,7 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Routing\Router;
+use App\User;
+use App\ZipCode;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -12,9 +13,9 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(Router $router)
+    public function boot ()
     {
-        $router->model('users', 'App\User');
+        //
     }
 
     /**
@@ -22,8 +23,12 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register ()
     {
-        //
+        $user = new User();
+        $zip = new ZipCode();
+
+        $this->app->instance('User', $user);
+        $this->app->instance('ZipCode', $zip);
     }
 }

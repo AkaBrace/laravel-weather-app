@@ -26,4 +26,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Creates a nested relationship with Zip Code model
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function zipCodes ()
+    {
+        return $this->hasMany('App\ZipCode');
+    }
 }
